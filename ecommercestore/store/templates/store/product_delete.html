@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<form method="POST" action="{% url 'product delete' product.id%}">
+        <fieldset>
+            <legend>Delete product</legend>
+            <div class="container">
+                {% csrf_token %}
+                {{ form }}
+
+                <!-- Button for Deleting an Album -->
+                <button class="btn btn-danger" type="submit">Delete</button>
+
+
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

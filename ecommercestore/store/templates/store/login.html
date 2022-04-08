@@ -1,0 +1,11 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-center">Login to Your Profile</h1>
+<form action="{% url 'login account' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>Login</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<form method="POST" action="{% url 'profile edit' request.user.id%}" enctype='multipart/form-data'>
+        <fieldset>
+            <legend>Edit Product</legend>
+            <div class="container">
+                {% csrf_token %}
+                {{ form }}
+
+                <!-- Button for Deleting an Album -->
+                <button class="btn btn-danger" type="submit" >Save</button>
+
+
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
