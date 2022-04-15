@@ -16,8 +16,11 @@
                         <h5><u>Description:</u> {{ profile.description }}</h5>
 
             </div>
+                {% if is_owner %}
                 <a href="{% url 'change password' %}" class="btn btn-primary">Change Password</a>
+
                 <a href="{% url 'profile edit' request.user.id%}" class="btn btn-danger">Edit</a>
+                {% endif %}
         </div>
     </div>
 {% endblock %}

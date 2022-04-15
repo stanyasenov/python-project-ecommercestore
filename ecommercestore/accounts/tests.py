@@ -33,6 +33,33 @@ class ProfileDetailsViewTests(TestCase):
     def test_when_all_valid_expect_correct_template(self):
         user, customer = self.__create_valid_user_and_profile()
 
-        self.client.get(reverse('profile details', kwargs={'pk': customer.pk}))
+        self.client.get(reverse('profile details', kwargs={'pk': 2}))
+
+        self.assertTemplateUsed('store/profile.html')
+
+
+class UserRegistrationView(TestCase):
+    VALID_USER_CREDENTIALS = {
+        'username': 'testuser',
+        'password': '12345qew',
+    }
+    VALID_PROFILE_DATA = {
+        'name': 'Test',
+        'email': 'test@mail.bg',
+    }
+
+    def __create_valid_user_and_profile(self):
+        user = UserModel.objects.create_user(**self.VALID_USER_CREDENTIALS)
+        customer = Customer.objects.create(
+            **self.VALID_PROFILE_DATA,
+            user=user,
+        )
+
+        return user, customer
+
+    def test_when_all_valid_expect_correct_template(self):
+        user, customer = self.__create_valid_user_and_profile()
+
+        self.client.get(reverse('profile details', kwargs={'pk': 2}))
 
         self.assertTemplateUsed('store/profile.html')

@@ -21,6 +21,7 @@ class ProfileDetailsView(DetailView):
 
         context.update({
             'cartItems': cartItems,
+            'is_owner': self.object.user_id == self.request.user.id,
         })
         return context
 
@@ -73,6 +74,7 @@ class ChangeProfileDetails(UpdateView):
 
         context.update({
             'cartItems': cartItems,
+
         })
         return context
 
